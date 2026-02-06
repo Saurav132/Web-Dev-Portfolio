@@ -6,6 +6,8 @@ import { Button } from './ui/button';
 
 const Hero = () => {
   const { hero } = mockData;
+  
+
 
   const iconMap = {
     Smartphone: Smartphone,

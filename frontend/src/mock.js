@@ -88,14 +88,14 @@ export const mockData = {
   projects: [
     {
       id: 1,
-      title: "Cafe Delight Website",
-      description: "A modern cafe website with online menu, reservation system, and photo gallery.",
+      title: "Midnight Brew",
+      description: "Smart cafe web experience with real-time menu updates and customer engagement.",
       image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&h=600&fit=crop",
       problem: "Small cafe needed online presence to attract customers and showcase their menu.",
       features: ["Online Menu", "Reservation System", "Photo Gallery", "Location Map"],
       tech: ["React", "Tailwind CSS", "Sanity CMS"],
-      liveLink: "#",
-      codeLink: "#"
+      liveLink: "https://midnight-brew-cafe-site.vercel.app/",
+      codeLink: "https://github.com/Saurav132/Midnight-Brew-Cafe"
     },
     {
       id: 2,
@@ -235,7 +235,7 @@ export const mockData = {
     {
       id: 1,
       name: "Priya Sharma",
-      business: "Cafe Aroma Owner",
+      business: "Midnigh Brew",
       text: "Saurav created a beautiful website for my cafe. Now customers can see our menu online and make reservations easily. The CMS feature is amazing – I can update menu items myself!",
       rating: 5,
       image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop"
@@ -262,9 +262,9 @@ export const mockData = {
     whatsapp: "+91 7668401610",
     email: "sauravdhapola17@gmail.com",
     social: {
-      github: "#",
-      linkedin: "#",
-      twitter: "#"
+      github: "https://github.com/Saurav132",
+      linkedin: "https://www.linkedin.com/in/saurav-dhapola/",
+      twitter: "https://x.com/Saurav99609541"
     }
   }
 };

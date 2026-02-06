@@ -165,34 +165,39 @@ const Projects = () => {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex gap-3 mt-6">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex-1 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 group/btn"
-                  >
-                    <motion.div
-                      whileHover={{ rotate: 45 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                    </motion.div>
-                    Live Demo
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex-1 border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10"
-                  >
-                    <motion.div
-                      whileHover={{ scale: 1.2 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Github className="mr-2 h-4 w-4" />
-                    </motion.div>
-                    Code
-                  </Button>
-                </div>
+                {/* Action Buttons */}
+<div className="flex gap-3 mt-6">
+  <Button
+    variant="outline"
+    size="sm"
+    onClick={() => window.open(project.liveLink, "_blank")}
+    className="flex-1 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 group/btn"
+  >
+    <motion.div
+      whileHover={{ rotate: 45 }}
+      transition={{ duration: 0.3 }}
+    >
+      <ExternalLink className="mr-2 h-4 w-4" />
+    </motion.div>
+    Live Demo
+  </Button>
+
+  <Button
+    variant="outline"
+    size="sm"
+    onClick={() => window.open(project.codeLink, "_blank")}
+    className="flex-1 border-emerald-500/50 text-emerald-400 hover:bg-emerald-500/10"
+  >
+    <motion.div
+      whileHover={{ scale: 1.2 }}
+      transition={{ duration: 0.2 }}
+    >
+      <Github className="mr-2 h-4 w-4" />
+    </motion.div>
+    Code
+  </Button>
+</div>
+
               </div>
             </motion.div>
           ))}
