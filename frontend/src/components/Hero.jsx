@@ -145,23 +145,72 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right 3D Canvas */}
+          {/* Right 3D Visual */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="h-[500px] lg:h-[600px] relative"
+            className="h-[500px] lg:h-[600px] relative flex items-center justify-center"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 rounded-3xl blur-3xl" />
-            <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-              <ambientLight intensity={0.5} />
-              <directionalLight position={[10, 10, 5]} intensity={1} />
-              <spotLight position={[0, 10, 10]} intensity={0.5} />
-              <Suspense fallback={null}>
-                <AnimatedSphere />
-                <OrbitControls enableZoom={false} autoRotate autoRotateSpeed={2} />
-              </Suspense>
-            </Canvas>
+            {/* Animated 3D-like sphere using CSS */}
+            <motion.div
+              animate={{
+                rotateY: [0, 360],
+                rotateX: [0, 15, 0],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="relative w-[300px] h-[300px] lg:w-[400px] lg:h-[400px]"
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              {/* Main sphere */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500/40 to-emerald-500/40 blur-2xl" />
+              <motion.div
+                animate={{
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400 to-emerald-400 opacity-80 shadow-2xl shadow-cyan-500/50"
+              />
+              
+              {/* Orbiting elements */}
+              <motion.div
+                animate={{
+                  rotate: 360,
+                }}
+                transition={{
+                  duration: 10,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="absolute inset-0"
+              >
+                <div className="absolute top-0 left-1/2 w-4 h-4 bg-cyan-400 rounded-full shadow-lg shadow-cyan-500/50" />
+                <div className="absolute bottom-0 right-1/2 w-3 h-3 bg-emerald-400 rounded-full shadow-lg shadow-emerald-500/50" />
+              </motion.div>
+              
+              <motion.div
+                animate={{
+                  rotate: -360,
+                }}
+                transition={{
+                  duration: 15,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="absolute inset-0"
+              >
+                <div className="absolute top-1/2 right-0 w-5 h-5 bg-cyan-300 rounded-full shadow-lg shadow-cyan-400/50" />
+                <div className="absolute top-1/2 left-0 w-3 h-3 bg-emerald-300 rounded-full shadow-lg shadow-emerald-400/50" />
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
