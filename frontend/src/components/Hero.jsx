@@ -1,28 +1,8 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Float, MeshDistortMaterial } from '@react-three/drei';
 import { Smartphone, Zap, DollarSign, ArrowRight } from 'lucide-react';
 import { mockData } from '../mock';
 import { Button } from './ui/button';
-
-const AnimatedSphere = () => {
-  return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-      <mesh>
-        <sphereGeometry args={[1.5, 64, 64]} />
-        <MeshDistortMaterial
-          color="#06b6d4"
-          attach="material"
-          distort={0.4}
-          speed={2}
-          roughness={0.2}
-          metalness={0.8}
-        />
-      </mesh>
-    </Float>
-  );
-};
 
 const Hero = () => {
   const { hero } = mockData;
