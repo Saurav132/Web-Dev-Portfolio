@@ -145,13 +145,35 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right 3D Visual */}
+          {/* Right 3D Visual - Enhanced */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="h-[500px] lg:h-[600px] relative flex items-center justify-center"
           >
+            {/* Floating particles in background */}
+            {[...Array(20)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
+                style={{
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                }}
+                animate={{
+                  y: [0, -30, 0],
+                  opacity: [0.3, 0.8, 0.3],
+                  scale: [1, 1.5, 1],
+                }}
+                transition={{
+                  duration: 3 + Math.random() * 2,
+                  repeat: Infinity,
+                  delay: Math.random() * 2,
+                }}
+              />
+            ))}
+
             {/* Animated 3D-like sphere using CSS */}
             <motion.div
               animate={{
@@ -166,50 +188,118 @@ const Hero = () => {
               className="relative w-[300px] h-[300px] lg:w-[400px] lg:h-[400px]"
               style={{ transformStyle: 'preserve-3d' }}
             >
-              {/* Main sphere */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500/40 to-emerald-500/40 blur-2xl" />
+              {/* Pulsing glow layers */}
+              <motion.div 
+                className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500/40 to-emerald-500/40 blur-3xl"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.4, 0.6, 0.4],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              
+              {/* Main sphere with shimmer */}
               <motion.div
                 animate={{
-                  scale: [1, 1.1, 1],
+                  scale: [1, 1.05, 1],
+                  boxShadow: [
+                    '0 0 40px rgba(6, 182, 212, 0.5)',
+                    '0 0 80px rgba(16, 185, 129, 0.7)',
+                    '0 0 40px rgba(6, 182, 212, 0.5)',
+                  ],
                 }}
                 transition={{
                   duration: 3,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400 to-emerald-400 opacity-80 shadow-2xl shadow-cyan-500/50"
+                className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400 to-emerald-400 opacity-80"
               />
               
-              {/* Orbiting elements */}
+              {/* Orbiting ring 1 */}
               <motion.div
                 animate={{
                   rotate: 360,
                 }}
                 transition={{
-                  duration: 10,
+                  duration: 8,
                   repeat: Infinity,
                   ease: "linear",
                 }}
                 className="absolute inset-0"
               >
-                <div className="absolute top-0 left-1/2 w-4 h-4 bg-cyan-400 rounded-full shadow-lg shadow-cyan-500/50" />
-                <div className="absolute bottom-0 right-1/2 w-3 h-3 bg-emerald-400 rounded-full shadow-lg shadow-emerald-500/50" />
+                <motion.div 
+                  className="absolute top-0 left-1/2 w-4 h-4 bg-cyan-400 rounded-full shadow-lg shadow-cyan-500/50"
+                  animate={{
+                    scale: [1, 1.3, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                  }}
+                />
+                <motion.div 
+                  className="absolute bottom-0 right-1/2 w-3 h-3 bg-emerald-400 rounded-full shadow-lg shadow-emerald-500/50"
+                  animate={{
+                    scale: [1, 1.5, 1],
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                  }}
+                />
               </motion.div>
               
+              {/* Orbiting ring 2 */}
               <motion.div
                 animate={{
                   rotate: -360,
                 }}
                 transition={{
-                  duration: 15,
+                  duration: 12,
                   repeat: Infinity,
                   ease: "linear",
                 }}
                 className="absolute inset-0"
               >
-                <div className="absolute top-1/2 right-0 w-5 h-5 bg-cyan-300 rounded-full shadow-lg shadow-cyan-400/50" />
-                <div className="absolute top-1/2 left-0 w-3 h-3 bg-emerald-300 rounded-full shadow-lg shadow-emerald-400/50" />
+                <motion.div 
+                  className="absolute top-1/2 right-0 w-5 h-5 bg-cyan-300 rounded-full shadow-lg shadow-cyan-400/50"
+                  animate={{
+                    scale: [1, 1.4, 1],
+                  }}
+                  transition={{
+                    duration: 2.2,
+                    repeat: Infinity,
+                  }}
+                />
+                <motion.div 
+                  className="absolute top-1/2 left-0 w-3 h-3 bg-emerald-300 rounded-full shadow-lg shadow-emerald-400/50"
+                  animate={{
+                    scale: [1, 1.6, 1],
+                  }}
+                  transition={{
+                    duration: 1.8,
+                    repeat: Infinity,
+                  }}
+                />
               </motion.div>
+
+              {/* Inner rotating circle */}
+              <motion.div
+                animate={{
+                  rotate: 360,
+                  scale: [0.8, 0.9, 0.8],
+                }}
+                transition={{
+                  rotate: { duration: 15, repeat: Infinity, ease: "linear" },
+                  scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+                }}
+                className="absolute inset-[20%] rounded-full border-2 border-cyan-400/30"
+              />
             </motion.div>
           </motion.div>
         </div>
