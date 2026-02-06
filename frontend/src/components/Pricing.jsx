@@ -40,55 +40,140 @@ const Pricing = () => {
           {pricing.map((plan, index) => (
             <motion.div
               key={plan.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: index * 0.2, duration: 0.6 }}
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ 
+                delay: index * 0.2, 
+                duration: 0.8,
+                type: "spring",
+                stiffness: 100,
+              }}
+              whileHover={{
+                y: -15,
+                scale: 1.05,
+                rotateY: plan.popular ? 0 : 5,
+              }}
               className={`relative backdrop-blur-sm border rounded-2xl p-8 ${
                 plan.popular
                   ? 'bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 border-cyan-500/50 scale-105 shadow-2xl shadow-cyan-500/20'
                   : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-cyan-500/50'
               } transition-all duration-300`}
+              style={{ transformStyle: 'preserve-3d' }}
             >
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-full text-sm font-bold text-white shadow-lg">
-                  Most Popular
-                </div>
+                <>
+                  {/* Animated glow */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-emerald-500/10 rounded-2xl blur-xl"
+                    animate={{
+                      scale: [1, 1.1, 1],
+                      opacity: [0.5, 0.8, 0.5],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+                  
+                  {/* Popular badge with animation */}
+                  <motion.div 
+                    className="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-full text-sm font-bold text-white shadow-lg"
+                    animate={{
+                      y: [0, -5, 0],
+                      boxShadow: [
+                        '0 4px 20px rgba(6, 182, 212, 0.3)',
+                        '0 8px 30px rgba(16, 185, 129, 0.5)',
+                        '0 4px 20px rgba(6, 182, 212, 0.3)',
+                      ],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    Most Popular
+                  </motion.div>
+                </>
               )}
 
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-white mb-2">
+              <div className="text-center mb-8 relative z-10">
+                <motion.h3 
+                  className="text-2xl font-bold text-white mb-2"
+                  whileHover={{
+                    scale: 1.05,
+                  }}
+                >
                   {plan.name}
-                </h3>
+                </motion.h3>
                 <p className="text-gray-400 text-sm mb-4">
                   {plan.description}
                 </p>
-                <div className="mb-6">
+                <motion.div 
+                  className="mb-6"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
                   <span className="text-5xl font-bold text-white">
                     {plan.price}
                   </span>
-                </div>
+                </motion.div>
               </div>
 
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-4 mb-8 relative z-10">
                 {plan.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center mt-0.5">
+                  <motion.li 
+                    key={i} 
+                    className="flex items-start gap-3"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: index * 0.2 + i * 0.1 }}
+                    whileHover={{ x: 5 }}
+                  >
+                    <motion.div 
+                      className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center mt-0.5"
+                      whileHover={{
+                        scale: 1.2,
+                        rotate: 360,
+                        backgroundColor: 'rgba(16, 185, 129, 0.4)',
+                      }}
+                      transition={{ duration: 0.5 }}
+                    >
                       <Check className="h-4 w-4 text-emerald-400" />
-                    </div>
+                    </motion.div>
                     <span className="text-gray-300">{feature}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
 
               <Button
                 onClick={scrollToContact}
-                className={`w-full py-6 text-lg font-semibold rounded-lg transition-all duration-300 ${
+                className={`w-full py-6 text-lg font-semibold rounded-lg transition-all duration-300 relative z-10 overflow-hidden group ${
                   plan.popular
                     ? 'bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-600 hover:to-emerald-600 text-white shadow-lg shadow-cyan-500/30'
                     : 'bg-white/5 border border-white/20 text-white hover:bg-white/10 hover:border-cyan-500/50'
                 }`}
               >
-                {plan.buttonText}
+                {/* Shine effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  animate={{
+                    x: ['-200%', '200%'],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 3,
+                  }}
+                />
+                <span className="relative z-10">{plan.buttonText}</span>
               </Button>
             </motion.div>
           ))}
